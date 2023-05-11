@@ -4,7 +4,8 @@
 from random import choice
 from typing import Tuple, Iterable
 
-from commons.board import Board, WrongCellChosenError, WrongPlayerMoveError
+from commons.board import Board, WrongPlayerMoveError
+
 
 class G15Board(Board):
 	FIXED_BOARD_SIZE = (4, 4)

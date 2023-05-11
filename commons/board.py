@@ -11,7 +11,9 @@ class Board:
 		self.cells = [val] * self.calc_idx((sizes[0],)+(0,)*(len(sizes)-1))
 
 	def get_sizes(self) -> Tuple[int]:
-		raise NotImplementedError("Define the board geometry via get_sizes function.")
+		raise NotImplementedError(
+			"Define the board geometry via get_sizes function."
+		)
 
 	@classmethod
 	def get_empty_cell_value(cls):
@@ -31,11 +33,14 @@ class Board:
 			self.cells[self.calc_idx(idx)] = val
 
 	def check_rules(self, idx: Tuple[int], val):
-		raise NotImplementedError("Define validation via check_rules function to make the board writable.")
+		raise NotImplementedError(
+			"Define validation via check_rules function to make the board writable."
+		)
+
 
 class WrongPlayerMoveError(ValueError):
 	pass
 
+
 class WrongCellChosenError(ValueError):
 	pass
-
