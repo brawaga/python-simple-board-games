@@ -7,7 +7,7 @@ from commons.board import Board, WrongCellChosenError, WrongPlayerMoveError
 class TTTBoard(Board):
 	def __init__(self, s):
 		self.size = s
-		super().__init__((s, s))
+		super().__init__()
 		self.current_player = 'X'
 
 	def get_sizes(self) -> Tuple[int]:
@@ -33,21 +33,27 @@ class TTTBoard(Board):
 
 	def get_winner(self):
 		size = self.size
-		v = self[(0, 0)]
 		e = self.get_empty_cell_value()
+
+		# Main diagonal
+		v = self[(0, 0)]
 		if v != e:
 			for i in range(1, size):
 				if self[(i, i)] != v:
 					break
 			else:
 				return v, (0, 0), (1, 1)
+
+		# Secondary diagonal
 		v = self[(0, size-1)]
 		if v != e:
 			for i in range(1, size):
-				if self[(i, i)] != v:
+				if self[(i, size-1-i)] != v:
 					break
 			else:
 				return v, (0, size-1), (1, -1)
+
+		# Horizontals/verticals
 		for j in range(size):
 			v = self[(0, j)]
 			if v != e:
@@ -63,7 +69,15 @@ class TTTBoard(Board):
 						break
 				else:
 					return v, (j, 0), (1, 0)
-		e = self.get_empty_cell_value()
+
+		# Has room to put a figure — game is not over
 		if e in self.cells:
 			return None
+
+		# No room and no win conditions met — so draw
 		return e, (0, 0), (0, 0)
+
+
+class TTTPlay:
+	def __init__(self, board: TTTBoard):
+		self.board = board
