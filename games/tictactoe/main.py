@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from commons.license import print_license_info
-from tictactoe import TTTBoard, TTTPlay
+from tictactoe import TTTBoard
+from games.tictactoe.play import TTTPlay
 
 
 def main():
