@@ -8,7 +8,7 @@ from commons.board import WrongCellChosenError
 from games.tictactoe.tictactoe import TTTBoard
 
 
-class TTTPlay:
+class TTTConsolePlay:
 	def __init__(self, board: TTTBoard):
 		self.board = board
 		self.quit = False
@@ -36,7 +36,7 @@ class TTTPlay:
 						print('Главная диагональ.')
 					else:
 						print('Побочная диагональ')
-				elif win_info[2][0]:
+				elif win_info[2][1]:
 					print('Строка', win_info[1][1] + 1)
 				else:
 					print('Столбец', win_info[1][0] + 1)

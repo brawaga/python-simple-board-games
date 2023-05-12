@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from commons.license import print_license_info
 from tictactoe import TTTBoard
-from games.tictactoe.play import TTTPlay
+from games.tictactoe.play_console import TTTConsolePlay as TTTPlay
 
 
 def main():

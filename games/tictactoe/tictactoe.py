@@ -62,14 +62,14 @@ class TTTBoard(Board):
 					if self[(i, j)] != v:
 						break
 				else:
-					return v, (0, j), (0, 1)
+					return v, (0, j), (1, 0)
 			v = self[(j, 0)]
 			if v != e:
 				for i in range(1, size):
 					if self[(j, i)] != v:
 						break
 				else:
-					return v, (j, 0), (1, 0)
+					return v, (j, 0), (0, 1)
 
 		# Has room to put a figure — game is not over
 		if e in self.cells:
