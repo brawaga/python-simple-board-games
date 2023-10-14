@@ -2,19 +2,23 @@
 # -*- coding: utf-8 -*-
 
 from random import choice
-from typing import Tuple, Iterable
+from typing import Iterable, Tuple
 
 from commons.board import Board, WrongPlayerMoveError
 
 
 class G15Board(Board):
 	FIXED_BOARD_SIZE = (4, 4)
-	ORDERED_CELLS_STATE = list(range(1, 16))+[Board.get_empty_cell_value()]
+	ORDERED_CELLS_STATE = list(range(1, 16))
 
 	def __init__(self):
-		super().__init__(self.FIXED_BOARD_SIZE)
+		super().__init__()
 		self.cells = self.ORDERED_CELLS_STATE[:]
 		self.shuffle()
+
+	@classmethod
+	def get_empty_cell_value(cls) -> int | None:
+		return None
 
 	def shuffle(self):
 		swap_count = 100
@@ -50,11 +54,12 @@ class G15Board(Board):
 		else:
 			raise WrongPlayerMoveError("Ход не разрешён")
 
-	def check_rules(self, idx, val):
+	def check_rules(self, idx: Iterable[int], val: int| None):
 		return True
 
-	def __setitem__(self, idx: Iterable[int], val):
+	def __setitem__(self, idx: Iterable[int], val: int | None):
 		raise RuntimeError("Не меняйте поле вручную, используйте swap")
 
 	def is_winned(self):
 		return self.cells == self.ORDERED_CELLS_STATE
+G15Board.ORDERED_CELLS_STATE += [G15Board.get_empty_cell_value()]

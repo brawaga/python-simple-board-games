@@ -15,13 +15,13 @@ class TTTBoard(Board):
 		return (self.size, self.size)
 
 	@classmethod
-	def get_empty_cell_value(cls):
+	def get_empty_cell_value(cls) -> str:
 		return ' '
 
 	def switch_to_next_player(self):
 		self.current_player = 'O' if self.current_player == 'X' else 'X'
 
-	def check_rules(self, idx: Tuple[int, ...], val):
+	def check_rules(self, idx: Tuple[int, ...], val: str):
 		if val != self.current_player:
 			raise WrongPlayerMoveError('Wrong player move.')
 		if self[(idx)] != self.get_empty_cell_value():
